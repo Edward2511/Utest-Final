@@ -1,27 +1,31 @@
 package co.com.choucair.certification.tasks;
-import io.airlift.airline.Cli;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.EnterValue;
-import net.serenitybdd.screenplay.actions.selectactions.SelectByValueFromTarget;
-import net.serenitybdd.screenplay.actions.selectactions.SelectByVisibleTextFromBy;
-import net.serenitybdd.screenplay.actions.selectactions.SelectByVisibleTextFromTarget;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import org.apache.bcel.generic.Select;
-
+import java.util.List;
 import static co.com.choucair.certification.userinterfases.Home.*;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 
 public class Registro implements Task{
+private String firstName;
+private String lastName;
+private String email;
+private String password;
+private String confirPassword;
 
+    public Registro(String firstName, String lastName, String email, String password, String confirPassword) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.confirPassword = confirPassword;
+    }
 
-
-
-        public static Registro RegistroUsuario() {
-            return Tasks.instrumented(Registro.class);
+    public static Registro RegistroUsuario(String firstName, String lastName, String email, String password, String confirPassword) {
+            return Tasks.instrumented(Registro.class, firstName, lastName,  email, password, confirPassword);
         }
         @Override
         public <T extends Actor> void performAs(T actor) {
@@ -29,11 +33,11 @@ public class Registro implements Task{
                     WaitUntil.the(BTN_JOINTODAY, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
                     Click.on(BTN_JOINTODAY),
                     WaitUntil.the(INP_FIRSTNAME, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
-                    Enter.theValue("Edward").into(INP_FIRSTNAME),
+                    Enter.theValue(firstName).into(INP_FIRSTNAME),
                     WaitUntil.the(INP_LASTNAME, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
-                    Enter.theValue("Rodriguez").into(INP_LASTNAME),
+                    Enter.theValue(lastName).into(INP_LASTNAME),
                     WaitUntil.the(INP_EMAIL, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
-                    Enter.theValue("edward.rodriguez-g@hotmail.com").into(INP_EMAIL),
+                    Enter.theValue(email).into(INP_EMAIL),
                     WaitUntil.the(SELECT_BIRTMONTH, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
                     Click.on(SELECT_BIRTMONTH),
                     WaitUntil.the(OPTION_BIRTMONTH, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
@@ -58,8 +62,8 @@ public class Registro implements Task{
                     WaitUntil.the(SELECT_IDIOMA, isCurrentlyVisible()).forNoMoreThan(90).seconds(),
                     Click.on(BTN_NEXT2),
                     WaitUntil.the(PASSWORD1, isVisible()).forNoMoreThan(90).seconds(),
-                    Enter.theValue("E12345678e*").into(PASSWORD1),
-                    Enter.theValue("E12345678e*").into(CONFIR_PASSWORD),
+                    Enter.theValue(password).into(PASSWORD1),
+                    Enter.theValue(confirPassword).into(CONFIR_PASSWORD),
                     Click.on(PRIMER_CHECK),
                     Click.on(SEGUNDO_CHEC),
                     Click.on(TERCER_CHEC),

@@ -56,10 +56,6 @@ public class Home {
     public static final Target SELECT_IDIOMA = Target.the("seleccionar idioma")
             .located(By.xpath("/html/body/ui-view/main/section/div/div[2]/div/div[2]/div/div[1]/div[3]/div[1]/div[3]/div[2]/div/div[1]/span"));
 
-
-    public static final Target INP_MOVIL= Target.the("seleccionar movil")
-            .located(By.xpath("//div[text()='Audiovox']"));
-
     public static final Target BTN_NEXT2= Target.the("siguiente Pantallana")
             .located(By.xpath("//a[@aria-label='Next - final step']"));
 
@@ -69,15 +65,16 @@ public class Home {
     public static final Target CONFIR_PASSWORD= Target.the("confirmar password")
             .located(By.xpath("//input[@id='confirmPassword']"));
 
-    public static final Target PRIMER_CHECK= Target.the("confirmar password")
+    public static final Target PRIMER_CHECK= Target.the("check primero")
             .located(By.xpath("//span[@class='checkmark signup-consent__checkbox signup-consent__checkbox--highlight']"));
-    public static final Target SEGUNDO_CHEC= Target.the("confirmar password")
+    public static final Target SEGUNDO_CHEC= Target.the("check segundo")
             .located(By.xpath("//span[@class='checkmark signup-consent__checkbox error']"));
-    public static final Target TERCER_CHEC= Target.the("confirmar password")
+    public static final Target TERCER_CHEC= Target.the("check tercero")
             .located(By.xpath("//span[@class='checkmark signup-consent__checkbox error']"));
-    public static final Target BTN_COMPLETE= Target.the("confirmar password")
+    public static final Target BTN_COMPLETE= Target.the("boton completar registro")
             .located(By.xpath("//a[@aria-label='Complete Setup']"));
-
+    public static final Target TXT_MENSAJE= Target.the("mensaje exitoso")
+            .located(By.xpath("/html/body/ui-view/unauthenticated-container/div/div/div/ui-view/div/div/div/div[1]/div/h1"));
 
 
 
